@@ -1700,6 +1700,16 @@ RUN if [ ${INSTALL_TRADER} = true ]; then \
 #--------------------------------------------------------------------------
 #
 
+#mt_custom
+
+# add ru locale
+RUN locale-gen ru_RU.UTF-8 && update-locale
+
+# ADD custom php ini file
+COPY ./mt_custom_php_cli.ini /etc/php/${LARADOCK_PHP_VERSION}/cli/conf.d/99-mt_custom_php_cli.ini
+#COPY ./mt_custom_php_cli.ini /etc/php/7.4/cli/conf.d/99-mt_custom_php_cli.ini
+
+
 USER root
 
 # Clean up
